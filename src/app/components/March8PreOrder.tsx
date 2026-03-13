@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { Flower2, Timer, Sparkles, Calendar, Loader2 } from 'lucide-react';
+import { Package, Loader2 } from 'lucide-react';
 import { getPreorderProducts } from '@/app/lib/api';
 
 interface Product {
@@ -18,31 +18,11 @@ interface Product {
   image: string;
 }
 
-const ACCENT = '#8B5CF6'; // МАРТ 8 өнгө
+const ACCENT = '#8B5CF6';
 
 export function March8PreOrder() {
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const targetDate = new Date(2026, 2, 8, 23, 59, 59); // 2026-03-08 23:59:59
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = targetDate.getTime() - now;
-      if (distance < 0) {
-        clearInterval(interval);
-        return;
-      }
-      setTimeLeft({
-        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((distance % (1000 * 60)) / 1000),
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,66 +62,35 @@ export function March8PreOrder() {
   }
 
   return (
-    <section id="mart8-preorder" className="relative py-16 md:py-20 overflow-hidden bg-gradient-to-b from-[#F5F0FF] to-white">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -top-20 -right-20 text-violet-100 opacity-50 rotate-12">
-          <Flower2 size={400} stroke="currentColor" />
-        </div>
-        <div className="absolute top-40 -left-20 text-violet-100 opacity-40 -rotate-12">
-          <Flower2 size={300} stroke="currentColor" />
-        </div>
-      </div>
-
+    <section id="preorder" className="relative py-16 md:py-20 overflow-hidden bg-gradient-to-b from-[#F5F0FF] to-white">
       <div className="max-w-[1440px] mx-auto px-4 md:px-8 relative z-10">
-        
-        {/* Header Section */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-16 text-center md:text-left">
-          <div className="max-w-2xl">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6"
-              style={{ backgroundColor: `${ACCENT}20`, color: ACCENT }}
-            >
-              <Sparkles className="size-3" />
-              <span>Limited Edition</span>
-            </motion.div>
-            
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-gray-900 leading-[1.1] mb-6">
-              МАРТ 8 <span className="italic" style={{ color: ACCENT }}>Collection</span>
-            </h2>
-            
-            <p className="text-gray-600 text-lg leading-relaxed max-w-lg">
-              Ээждээ, эхнэртээ, охиндоо бэлэглэх хамгийн сайхан бэлэг. Эрт захиалж хөнгөлөлтөөр аваарай.
-            </p>
-          </div>
-
-          {/* Countdown Card */}
-          <div className="bg-white p-6 md:p-8 rounded-2xl shadow-xl border min-w-[300px] md:min-w-[380px] border-violet-100 shadow-violet-100/50">
-            <div className="flex items-center gap-2 mb-6 justify-center" style={{ color: ACCENT }}>
-              <Timer className="size-5" />
-              <span className="font-bold uppercase tracking-wider text-sm">Урьдчилсан захиалга дуусахад</span>
-            </div>
-            
-            <div className="grid grid-cols-4 gap-4 text-center">
-              {[
-                { val: timeLeft.days, label: 'Өдөр' },
-                { val: timeLeft.hours, label: 'Цаг' },
-                { val: timeLeft.minutes, label: 'Мин' },
-                { val: timeLeft.seconds, label: 'Сек' }
-              ].map((item, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <div className="bg-gray-50 rounded-lg py-3 mb-2 border border-gray-100">
-                    <span className="text-2xl md:text-3xl font-bold text-gray-900 font-mono">
-                      {item.val.toString().padStart(2, '0')}
-                    </span>
-                  </div>
-                  <span className="text-[10px] uppercase font-bold text-gray-400">{item.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        {/* Header Section — зөвхөн урьдчилсан захиалга */}
+        <div className="mb-12 text-center md:text-left">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-6"
+            style={{ backgroundColor: `${ACCENT}20`, color: ACCENT }}
+          >
+            <Package className="size-3" />
+            <span>Урьдчилсан захиалга</span>
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-serif text-gray-900 leading-[1.1] mb-4"
+          >
+            Урьдчилсан захиалга
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-gray-600 text-lg leading-relaxed max-w-2xl"
+          >
+            Захиалгаар болон урьдчилан авах боломжтой шашны бэлгэдлийн бүтээгдэхүүнүүд. Дэлгэрэнгүй мэдээллийг бүтээгдэхүүн дээр дарж үзнэ үү.
+          </motion.p>
         </div>
 
         {/* Product Grid */}
@@ -155,38 +104,25 @@ export function March8PreOrder() {
               whileHover={{ y: -10 }}
               className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-violet-50 cursor-pointer flex flex-col h-full hover:shadow-violet-100/50"
             >
-              {/* Image Container */}
               <div className="relative aspect-[3/4] overflow-hidden bg-violet-50">
                 <img 
                   src={product.image} 
                   alt={product.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                
-                {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-60" />
-
-                {/* Badges */}
-                <div className="absolute top-3 left-3 right-3 flex justify-between items-start">
-                  <div className="flex flex-col gap-2">
-                    <span className="bg-white/95 backdrop-blur px-3 py-1 rounded-md text-xs font-bold shadow-sm flex items-center gap-1.5" style={{ color: ACCENT }}>
-                      <Calendar className="size-3" />
-                      Mar 8
-                    </span>
-                  </div>
-                  <div className="p-2 rounded-full shadow-lg text-white" style={{ backgroundColor: ACCENT }}>
-                    <Flower2 className="size-4" />
-                  </div>
+                <div className="absolute top-3 left-3">
+                  <span className="bg-white/95 backdrop-blur px-3 py-1 rounded-md text-xs font-bold shadow-sm flex items-center gap-1.5 w-fit" style={{ color: ACCENT }}>
+                    <Package className="size-3" />
+                    Урьдчилсан захиалга
+                  </span>
                 </div>
               </div>
 
-              {/* Content */}
               <div className="p-5 flex flex-col flex-1">
                 <h3 className="font-serif text-lg text-gray-900 leading-tight mb-2 transition-colors group-hover:text-violet-600">
                   {product.name}
                 </h3>
-
-                {/* Price */}
                 <div className="flex flex-wrap items-baseline gap-2 mb-4">
                   <span className="text-xl font-bold" style={{ color: ACCENT }}>
                     {product.price.toLocaleString()}₮
@@ -207,7 +143,6 @@ export function March8PreOrder() {
             </Link>
           ))}
         </div>
-
       </div>
     </section>
   );

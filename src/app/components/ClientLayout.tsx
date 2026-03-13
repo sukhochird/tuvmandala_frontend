@@ -28,11 +28,11 @@ export function ClientLayout({ children }: ClientLayoutProps) {
           <CartDrawer />
           {/* Messenger FAB - mobile only */}
           <a
-            href="https://www.messenger.com/t/101541682775777"
+            href="https://m.me/61571665965452"
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-6 right-6 z-40 md:hidden flex items-center justify-center size-14 rounded-full bg-[#0084FF] text-white shadow-lg hover:bg-[#0066CC] hover:scale-105 active:scale-95 transition-all"
-            title="Facebook Messenger"
+            title="Facebook Messenger - Tuv Mandala"
             aria-label="Facebook Messenger"
           >
             <MessageCircle className="size-7" strokeWidth={2} />

@@ -9,8 +9,6 @@ import {
   ChevronRight,
   Menu,
   X,
-  Youtube,
-  Instagram,
   Facebook,
   MessageCircle,
 } from "lucide-react";
@@ -20,7 +18,6 @@ import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { useCart } from "@/app/context/CartContext";
 import { useFavorites } from "@/app/context/FavoritesContext";
-import Image from "next/image";
 import { getHeaderMenu, type ApiHeaderMenuItem } from '@/app/lib/api';
 
 export function Header() {
@@ -97,34 +94,34 @@ export function Header() {
         <div className="max-w-[1440px] mx-auto px-4 md:px-8 flex items-center justify-between">
           <div className="flex items-center gap-6">
             <span className="opacity-80">
-              Улаанбаатар хотод хүргэлттэй цэцэг
+              Шашны бэлгэдлийн онлайн дэлгүүр
             </span>
           </div>
           <div className="hidden md:flex items-center gap-6">
             <a
-              href="#"
-              className="flex items-center gap-1.5 opacity-80 hover:opacity-100 hover:text-accent transition-all"
-            >
-              <Youtube className="size-3.5" />
-              YouTube
-            </a>
-            <a
-              href="https://www.instagram.com/eliteflower.mn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1.5 opacity-80 hover:opacity-100 hover:text-accent transition-all"
-            >
-              <Instagram className="size-3.5" />
-              Instagram
-            </a>
-            <a
-              href="https://www.facebook.com/EliteFlowerShop"
+              href="https://www.facebook.com/groups/2086319425140158"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 opacity-80 hover:opacity-100 hover:text-accent transition-all"
             >
               <Facebook className="size-3.5" />
-              Facebook
+              Group
+            </a>
+            <a
+              href="https://www.facebook.com/profile.php?id=61571665965452"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 opacity-80 hover:opacity-100 hover:text-accent transition-all"
+            >
+              <Facebook className="size-3.5" />
+              Page
+            </a>
+            <a
+              href="tel:98629992"
+              className="flex items-center gap-1.5 opacity-80 hover:opacity-100 hover:text-accent transition-all"
+            >
+              <Phone className="size-3.5" />
+              9862-9992
             </a>
           </div>
         </div>
@@ -153,26 +150,9 @@ export function Header() {
               href="/"
               className="flex items-center group shrink-0"
             >
-              <div className="relative h-8 md:h-12 w-auto overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                <Image
-                  src="/logo.png"
-                  alt="Elite Flower"
-                  width={120}
-                  height={48}
-                  className="h-full w-auto object-contain"
-                />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent skew-x-[-20deg]"
-                  initial={{ x: "-150%" }}
-                  animate={{ x: "150%" }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatDelay: 3,
-                    ease: "easeInOut",
-                  }}
-                />
-              </div>
+              <span className="font-serif text-xl md:text-2xl font-bold text-foreground group-hover:text-accent transition-colors">
+                Tuv Mandala
+              </span>
             </Link>
 
             {/* Navigation - Desktop */}
@@ -259,7 +239,7 @@ export function Header() {
             {/* Action icons */}
             <div className="flex items-center gap-2 md:gap-4">
               <a
-                href="https://www.messenger.com/t/101541682775777"
+                href="https://m.me/61571665965452"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 hover:bg-[#F5F5F5] rounded-full transition-colors hidden md:flex items-center justify-center text-[#0084FF]"
@@ -267,12 +247,13 @@ export function Header() {
               >
                 <MessageCircle className="size-5" />
               </a>
-              <button
-                className="p-2.5 hover:bg-[#F5F5F5] rounded-full transition-colors hidden md:block"
-                title="Phone"
+              <a
+                href="tel:98629992"
+                className="p-2.5 hover:bg-[#F5F5F5] rounded-full transition-colors hidden md:flex items-center justify-center"
+                title="Утас: 9862-9992"
               >
                 <Phone className="size-5" />
-              </button>
+              </a>
               <button
                 onClick={() => router.push('/favorites')}
                 className="p-2.5 hover:bg-[#F5F5F5] rounded-full transition-colors relative group"
@@ -447,8 +428,9 @@ export function Header() {
               <div className="p-6 bg-secondary/30 space-y-4">
                 <div className="flex gap-4 justify-center">
                   <a
-                    href="#"
+                    href="tel:98629992"
                     className="p-3 bg-white rounded-full shadow-sm hover:text-accent"
+                    title="9862-9992"
                   >
                     <Phone className="size-5" />
                   </a>

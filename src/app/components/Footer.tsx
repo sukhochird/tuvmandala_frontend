@@ -1,5 +1,4 @@
-import { Facebook, Instagram, MapPin, Phone, Youtube } from 'lucide-react';
-import Image from 'next/image';
+import { Facebook, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 export function Footer() {
@@ -9,43 +8,30 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Brand + tagline */}
           <div className="space-y-5">
-            <Link href="/" className="inline-block">
-              <Image
-                src="/logo.png"
-                alt="Elite Flower"
-                width={140}
-                height={44}
-                className="h-11 w-auto object-contain brightness-0 invert opacity-95"
-              />
+            <Link href="/" className="inline-block font-serif text-2xl font-bold text-white hover:opacity-90 transition-opacity">
+              Tuv Mandala
             </Link>
             <p className="text-white/75 text-sm leading-relaxed max-w-sm">
-              Таны сэтгэлийн үгсийг цэцгээр илэрхийлнэ. Хамгийн тансаг, шинэлэг цэцгийн баглааг бид бэлтгэнэ.
+              Шашны бэлгэдлийн ач холбогдлыг таниулж, сүсэг бишрэлийг нэмэгдүүлэх зорилготой. Чанартай шашны эд хэрэгслийг боломжийн үнээр урьдчилан болон захиалгаар авч, хүргэж өгнө.
             </p>
             <div className="flex gap-3 pt-1">
               <a
-                href="https://www.instagram.com/eliteflower.mn/"
+                href="https://www.facebook.com/groups/2086319425140158"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 bg-white/10 rounded-full hover:bg-white hover:text-primary transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="size-5" />
-              </a>
-              <a
-                href="https://www.facebook.com/EliteFlowerShop"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 bg-white/10 rounded-full hover:bg-white hover:text-primary transition-colors"
-                aria-label="Facebook"
+                aria-label="Facebook Group"
               >
                 <Facebook className="size-5" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/profile.php?id=61571665965452"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2.5 bg-white/10 rounded-full hover:bg-white hover:text-primary transition-colors"
-                aria-label="YouTube"
+                aria-label="Facebook Page"
               >
-                <Youtube className="size-5" />
+                <Facebook className="size-5" />
               </a>
             </div>
           </div>
@@ -55,39 +41,28 @@ export function Footer() {
             <h4 className="font-semibold text-white mb-5 text-sm uppercase tracking-wider">Холбоо барих</h4>
             <ul className="space-y-5 text-sm text-white/80">
               <li className="flex gap-3">
-                <MapPin className="size-5 shrink-0 mt-0.5 text-accent" />
-                <div className="space-y-3">
-                  <p>
-                    <span className="font-medium text-white">Салбар 1:</span>
-                    <br />
-                    <span className="text-white/80">10-р хорооллын туслах зам дагуу Elite flower цэцэгсийн дэлгүүр</span>
-                  </p>
-                  <p>
-                    <span className="font-medium text-white">Салбар 2:</span>
-                    <br />
-                    <span className="text-white/80">Grand Plaza Office, 1-р давхар Elite Premium Flower Shop</span>
-                  </p>
+                <Facebook className="size-5 shrink-0 mt-0.5 text-accent" />
+                <div className="flex flex-col gap-1">
+                  <span className="font-medium text-white">Group:</span>
+                  <a href="https://www.facebook.com/groups/2086319425140158" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Facebook Group</a>
+                  <span className="font-medium text-white mt-2">Page:</span>
+                  <a href="https://www.facebook.com/profile.php?id=61571665965452" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">Tuv Mandala - Төв Мандала</a>
                 </div>
               </li>
               <li className="flex gap-3">
                 <Phone className="size-5 shrink-0 mt-0.5 text-accent" />
                 <div className="flex flex-col gap-1">
-                  <a href="tel:90915955" className="hover:text-accent transition-colors">9091-5955</a>
-                  <a href="tel:90915595" className="hover:text-accent transition-colors">9091-5595</a>
+                  <a href="tel:98629992" className="hover:text-accent transition-colors">9862-9992</a>
                 </div>
               </li>
             </ul>
-            <div className="mt-6 p-4 bg-white/5 rounded-xl border border-white/10">
-              <p className="text-xs text-accent font-semibold uppercase tracking-wider mb-1">Цагийн хуваарь</p>
-              <p className="text-sm font-medium text-white/90">Өдөр бүр 09:00 – 21:00</p>
-            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="mt-14 pt-8 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-6">
           <p className="text-sm text-white/60 order-2 sm:order-1">
-            © {new Date().getFullYear()} Elite Flower. Бүх эрх хуулиар хамгаалагдсан.
+            © {new Date().getFullYear()} Tuv Mandala - Төв Мандала. Бүх эрх хуулиар хамгаалагдсан.
           </p>
           <div className="flex items-center gap-3 order-1 sm:order-2">
             <span className="text-xs text-white/50 uppercase tracking-wider">Төлбөр:</span>
