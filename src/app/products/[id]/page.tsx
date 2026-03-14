@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
-import { Minus, Plus, ShoppingCart, Heart, Share2, Truck, ShieldCheck, Clock, ArrowLeft, RefreshCw, MapPin, HelpCircle, X, Phone, Loader2, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
+import { Minus, Plus, ShoppingCart, Heart, Share2, Truck, ShieldCheck, Clock, ArrowLeft, RefreshCw, MapPin, HelpCircle, X, Phone, Loader2, ChevronLeft, ChevronRight, Maximize2, Facebook } from 'lucide-react';
 import { useCart } from '@/app/context/CartContext';
 import { useFavorites } from '@/app/context/FavoritesContext';
 import { DirectCheckoutModal } from '@/app/components/DirectCheckoutModal';
@@ -212,27 +212,21 @@ export default function ProductDetailPage() {
                             <MapPin className="size-5 text-accent" />
                         </div>
                         <div>
-                            <h4 className="font-medium mb-2">Хаяг</h4>
-                            <div className="space-y-3">
-                                <div>
-                                    <span className="text-sm font-semibold text-gray-900 block mb-1">Салбар 1:</span>
-                                    <p className="text-gray-600 text-sm">Tuv Mandala - шашны бэлгэдлийн онлайн дэлгүүр</p>
-                                </div>
-                                <div>
-                                    <span className="text-sm font-semibold text-gray-900 block mb-1">Салбар 2:</span>
-                                    <p className="text-gray-600 text-sm">🏢Grand Plaza Office, 1-р давхар Elite Premium Flower Shop</p>
-                                </div>
-                            </div>
+                            <h4 className="font-medium mb-1">Дэлгүүр</h4>
+                            <p className="text-gray-600 text-sm">Tuv Mandala - Төв Мандала. Шашны бэлгэдлийн онлайн дэлгүүр. Захиалгаар болон урьдчилан хүргэж өгнө.</p>
                         </div>
                     </div>
 
                     <div className="flex gap-4">
                         <div className="size-10 bg-accent/10 rounded-full flex items-center justify-center shrink-0">
-                            <Clock className="size-5 text-accent" />
+                            <Facebook className="size-5 text-accent" />
                         </div>
                         <div>
-                            <h4 className="font-medium mb-1">Цагийн хуваарь</h4>
-                            <p className="text-gray-600 text-sm">Өдөр бүр: 09:00 - 21:00</p>
+                            <h4 className="font-medium mb-2">Facebook</h4>
+                            <div className="flex flex-col gap-1.5">
+                                <a href="https://www.facebook.com/groups/2086319425140158" target="_blank" rel="noopener noreferrer" className="text-gray-600 text-sm hover:text-accent transition-colors">Group</a>
+                                <a href="https://www.facebook.com/profile.php?id=61571665965452" target="_blank" rel="noopener noreferrer" className="text-gray-600 text-sm hover:text-accent transition-colors">Page - Tuv Mandala</a>
+                            </div>
                         </div>
                     </div>
 
@@ -241,11 +235,8 @@ export default function ProductDetailPage() {
                             <Phone className="size-5 text-accent" />
                         </div>
                         <div>
-                            <h4 className="font-medium mb-1">Холбоо барих</h4>
-                            <div className="flex flex-col gap-1">
-                                <a href="tel:90915955" className="text-gray-600 text-sm hover:text-accent transition-colors">9091-5955</a>
-                                <a href="tel:90915595" className="text-gray-600 text-sm hover:text-accent transition-colors">9091-5595</a>
-                            </div>
+                            <h4 className="font-medium mb-1">Утас</h4>
+                            <a href="tel:98629992" className="text-gray-600 text-sm hover:text-accent transition-colors">9862-9992</a>
                         </div>
                     </div>
                 </div>
