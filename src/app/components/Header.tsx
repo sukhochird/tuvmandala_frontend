@@ -239,7 +239,7 @@ export function Header() {
             {/* Action icons */}
             <div className="flex items-center gap-2 md:gap-4">
               <a
-                href="https://m.me/61571665965452"
+                href="https://m.me/545578698636112"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 hover:bg-[#F5F5F5] rounded-full transition-colors hidden md:flex items-center justify-center text-[#0084FF]"
