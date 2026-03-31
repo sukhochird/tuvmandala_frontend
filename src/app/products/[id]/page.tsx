@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
-import { Minus, Plus, ShoppingCart, Heart, Share2, Truck, ShieldCheck, Clock, ArrowLeft, RefreshCw, MapPin, HelpCircle, X, Phone, Loader2, ChevronLeft, ChevronRight, Maximize2, Facebook } from 'lucide-react';
+import { Minus, Plus, ShoppingCart, Heart, Share2, Truck, ShieldCheck, Clock, ArrowLeft, RefreshCw, MapPin, HelpCircle, X, Phone, Loader2, ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 import { useCart } from '@/app/context/CartContext';
 import { useFavorites } from '@/app/context/FavoritesContext';
 import { DirectCheckoutModal } from '@/app/components/DirectCheckoutModal';
@@ -26,7 +26,6 @@ interface Product {
   availability: string;
   supplier: string;
   details: {
-    type?: string;
     count?: string;
     packaging?: string;
     height?: string;
@@ -97,7 +96,11 @@ export default function ProductDetailPage() {
           category: p.category,
           availability: p.availability,
           supplier: p.supplier,
-          details: (p.details as Product['details']) ?? {},
+          details: (() => {
+            const d = (p.details ?? {}) as Record<string, unknown>;
+            const { type: _t, ...rest } = d;
+            return rest as Product['details'];
+          })(),
         });
         const sameCategoryRes = await getProducts({ category: p.category });
         const others = sameCategoryRes.products.filter(x => x.id !== p.id).slice(0, 4);
@@ -212,21 +215,27 @@ export default function ProductDetailPage() {
                             <MapPin className="size-5 text-accent" />
                         </div>
                         <div>
-                            <h4 className="font-medium mb-1">Дэлгүүр</h4>
-                            <p className="text-gray-600 text-sm">Tuv Mandala - Төв Мандала. Шашны бэлгэдлийн онлайн дэлгүүр. Захиалгаар болон урьдчилан хүргэж өгнө.</p>
+                            <h4 className="font-medium mb-2">Хаяг</h4>
+                            <div className="space-y-3">
+                                <div>
+                                    <span className="text-sm font-semibold text-gray-900 block mb-1">Салбар 1:</span>
+                                    <p className="text-gray-600 text-sm">10-р хорооллын туслах зам дагуу</p>
+                                </div>
+                                <div>
+                                    <span className="text-sm font-semibold text-gray-900 block mb-1">Салбар 2:</span>
+                                    <p className="text-gray-600 text-sm">Grand Plaza Office, 1-р давхар</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div className="flex gap-4">
                         <div className="size-10 bg-accent/10 rounded-full flex items-center justify-center shrink-0">
-                            <Facebook className="size-5 text-accent" />
+                            <Clock className="size-5 text-accent" />
                         </div>
                         <div>
-                            <h4 className="font-medium mb-2">Facebook</h4>
-                            <div className="flex flex-col gap-1.5">
-                                <a href="https://www.facebook.com/groups/2086319425140158" target="_blank" rel="noopener noreferrer" className="text-gray-600 text-sm hover:text-accent transition-colors">Group</a>
-                                <a href="https://www.facebook.com/profile.php?id=61571665965452" target="_blank" rel="noopener noreferrer" className="text-gray-600 text-sm hover:text-accent transition-colors">Page - Tuv Mandala</a>
-                            </div>
+                            <h4 className="font-medium mb-1">Цагийн хуваарь</h4>
+                            <p className="text-gray-600 text-sm">Өдөр бүр: 09:00 - 21:00</p>
                         </div>
                     </div>
 
@@ -235,8 +244,11 @@ export default function ProductDetailPage() {
                             <Phone className="size-5 text-accent" />
                         </div>
                         <div>
-                            <h4 className="font-medium mb-1">Утас</h4>
-                            <a href="tel:98629992" className="text-gray-600 text-sm hover:text-accent transition-colors">9862-9992</a>
+                            <h4 className="font-medium mb-1">Холбоо барих</h4>
+                            <div className="flex flex-col gap-1">
+                                <a href="tel:90915955" className="text-gray-600 text-sm hover:text-accent transition-colors">9091-5955</a>
+                                <a href="tel:90915595" className="text-gray-600 text-sm hover:text-accent transition-colors">9091-5595</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -293,7 +305,7 @@ export default function ProductDetailPage() {
                     Буцаалтын нөхцөл
                   </h4>
                   <p>
-                    Цэцэг, амьд ургамлын шинж чанараас шалтгаалан буцаалт хийх боломжгүй. Захиалгаа өгөхөөс өмнө бүтээгдэхүүн, хэмжээ, өнгө зэргийг сайтар сонгоно уу. Асуудал гарвал дэлгүүртэй шууд холбогдоно уу.
+                    Тодорхой бүтээгдэхүүний онцлогоос шалтгаалан буцаалт хийх боломжгүй тохиолдол байж болно. Захиалгаа өгөхөөс өмнө бүтээгдэхүүн, хэмжээ, өнгө зэргийг сайтар сонгоно уу. Асуудал гарвал дэлгүүртэй шууд холбогдоно уу.
                   </p>
                 </section>
               </div>
@@ -571,10 +583,6 @@ export default function ProductDetailPage() {
                     <span className="font-medium text-gray-900">{product.category || '—'}</span>
                   </div>
                   <div className="grid grid-cols-[120px_1fr] gap-2">
-                    <span className="text-gray-500">Цэцгийн төрөл:</span>
-                    <span className="font-medium text-gray-900">{product.details?.type || '—'}</span>
-                  </div>
-                  <div className="grid grid-cols-[120px_1fr] gap-2">
                     <span className="text-gray-500">Тоо ширхэг:</span>
                     <span className="font-medium text-gray-900">{product.details?.count || '—'}</span>
                   </div>
@@ -607,7 +615,7 @@ export default function ProductDetailPage() {
         {/* Tabs Section */}
         <div className="mt-16 md:mt-24 mb-20">
           <div className="flex items-center gap-8 border-b border-gray-200 mb-8 overflow-x-auto">
-            {['description', 'delivery', 'care'].map((tab) => (
+            {['description', 'delivery'].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -619,7 +627,6 @@ export default function ProductDetailPage() {
               >
                 {tab === 'description' && 'Дэлгэрэнгүй'}
                 {tab === 'delivery' && 'Хүргэлтийн нөхцөл'}
-                {tab === 'care' && 'Арчилгаа'}
               </button>
             ))}
           </div>
@@ -631,9 +638,8 @@ export default function ProductDetailPage() {
                   className="mb-4 [&_p]:mb-2 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:list-decimal [&_ol]:pl-5 [&_h2]:font-semibold [&_h2]:mt-4 [&_h3]:font-medium [&_h3]:mt-3 [&_a]:text-accent [&_a]:underline [&_strong]:font-semibold"
                   dangerouslySetInnerHTML={{ __html: product.description || '' }}
                 />
-                {(product.details?.type || product.details?.count || product.details?.packaging || product.details?.height) && (
+                {(product.details?.count || product.details?.packaging || product.details?.height) && (
                   <ul className="list-disc pl-5 space-y-2 mt-4">
-                    {product.details?.type && <li>Цэцгийн төрөл: {product.details.type}</li>}
                     {product.details?.count && <li>Тоо ширхэг: {product.details.count}</li>}
                     {product.details?.packaging && <li>Баглаа боодол: {product.details.packaging}</li>}
                     {product.details?.height && <li>Өндөр: {product.details.height}</li>}
@@ -652,19 +658,6 @@ export default function ProductDetailPage() {
                     <div className="shrink-0 mt-0.5">ℹ️</div>
                     <p>Санамж: Хотын A бүсэд хүргэлт 10,000₮ бөгөөд энэ бүсээс гадуурх хүргэлтэнд нэмэлт төлбөр бодогдоно.</p>
                 </div>
-              </motion.div>
-            )}
-            {activeTab === 'care' && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-                <p className="mb-4">
-                  Цэцгээ удаан хадгалахын тулд дараах зөвлөгөөг дагаарай:
-                </p>
-                <ul className="list-disc pl-5 space-y-2">
-                  <li>Өдөр бүр усыг нь сольж байх</li>
-                  <li>Ишийг ташуу зүсэх</li>
-                  <li>Нарны шууд тусгалаас хол байлгах</li>
-                  <li>Сэрүүн газар хадгалах</li>
-                </ul>
               </motion.div>
             )}
           </div>
